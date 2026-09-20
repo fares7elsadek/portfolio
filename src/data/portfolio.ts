@@ -10,7 +10,7 @@ export const personal = {
 	github: "https://github.com/fares7elsadek",
 	medium: "https://medium.com/@fares7elsadek",
 	summary:
-		"Backend Software Engineer focused on building scalable APIs, distributed systems, and cloud-native applications with .NET and C#. Experienced in designing observable, reliable backend services with a strong foundation in security and DevOps.",
+		"Backend Software Engineer focused on building scalable APIs, distributed systems, and cloud-native applications. Experienced in designing observable, reliable backend services with a strong foundation in security and DevOps.",
 };
 
 export interface Experience {
@@ -28,7 +28,7 @@ export const experience: Experience[] = [
 		location: "Cairo, Egypt",
 		dates: "December 2025 – Present",
 		points: [
-			"Worked on backend modules for a healthcare platform built with .NET Core, contributing to feature development and maintenance.",
+			"Worked on backend modules for a healthcare platform, contributing to feature development and maintenance.",
 			"Helped redesign the real-time notification legacy system to support higher connection counts using SignalR and a Redis backplane.",
 			"Participated in architecture discussions, code reviews, and technical planning.",
 			"Collaborated with clinical and product teams to translate requirements into production-ready features.",
@@ -41,7 +41,7 @@ export const experience: Experience[] = [
 		location: "Cairo, Egypt",
 		dates: "July 2024 – September 2024",
 		points: [
-			"Developed application features in C# and .NET Framework.",
+			"Developed application backend features and maintained CRM integrations.",
 			"Designed SQL Server queries for CRM and reporting workflows.",
 			"Automated business processes using JavaScript.",
 			"Built internal dashboards for data insights.",

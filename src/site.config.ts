@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
 	title: "Fares Elsadek",
 	author: "Fares Elsadek",
 	description:
-		"Backend Software Engineer specializing in .NET, C#, distributed systems, APIs, cloud infrastructure, and scalable backend architecture.",
+		"Backend Software Engineer specializing in distributed systems, scalable APIs, cloud infrastructure, and robust backend architecture.",
 	lang: "en",
 	ogLocale: "en_US",
 	showLogo: false,
