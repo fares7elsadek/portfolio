@@ -23,6 +23,9 @@ importers:
       '@astrojs/sitemap':
         specifier: 3.7.4
         version: 3.7.4
+      '@heronsignal/web':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@pagefind/component-ui':
         specifier: ^1.5.2
         version: 1.5.2
@@ -598,6 +601,9 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.44.2':
     resolution: {integrity: sha512-SNI7EgUSiADqbqUzzMbj1ZeC/r2pa5eg3KyFOGAd3a7EsIA4qzjXQLp+ODWQtHVDKFCdGs4J3ovSJUqvKIK96g==}
+
+  '@heronsignal/web@0.1.0':
+    resolution: {integrity: sha512-uuKH2K1bdKMnqBlfJJ+TjT8Y6VhYbYvnAeHASaBWeH37+/ckjrFfOF7bLa0H2eg1EiOkoWEv4BthsD+OAG5Kew==}
 
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
@@ -3235,6 +3241,8 @@ snapshots:
   '@expressive-code/plugin-text-markers@0.44.2':
     dependencies:
       '@expressive-code/core': 0.44.2
+
+  '@heronsignal/web@0.1.0': {}
 
   '@iconify-json/mdi@1.2.3':
     dependencies:
