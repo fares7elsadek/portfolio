@@ -25,10 +25,10 @@ const articles = await fetchMediumArticles(4);
 		<p class="mb-6 mt-4 max-w-xl">{personal.summary}</p>
 		<SocialList />
 		<div class="mt-6 flex flex-wrap gap-3">
-			<a href="/portfolio/projects/" class="cactus-link font-semibold">View Projects →</a>
+			<a href="/projects/" class="cactus-link font-semibold">View Projects →</a>
 			<a href={personal.github} target="_blank" rel="noreferrer" class="cactus-link font-semibold">GitHub</a>
 			<a href={personal.linkedin} target="_blank" rel="noreferrer" class="cactus-link font-semibold">LinkedIn</a>
-			<a href="/portfolio/contact/" class="cactus-link font-semibold">Contact</a>
+			<a href="/contact/" class="cactus-link font-semibold">Contact</a>
 		</div>
 	</section>
 
@@ -75,7 +75,7 @@ const articles = await fetchMediumArticles(4);
 	{/* ── Featured Projects ──────────────────────── */}
 	<section class="mt-16" id="projects">
 		<h2 class="title mb-6 text-xl">
-			<a href="/portfolio/projects/" class="text-accent">Featured Projects</a>
+			<a href="/projects/" class="text-accent">Featured Projects</a>
 		</h2>
 		<div class="space-y-8">
 			{featuredProjects.map((project) => (
@@ -108,7 +108,7 @@ const articles = await fetchMediumArticles(4);
 			))}
 		</div>
 		<p class="mt-4">
-			<a href="/portfolio/projects/" class="cactus-link text-sm font-semibold">View all projects →</a>
+			<a href="/projects/" class="cactus-link text-sm font-semibold">View all projects →</a>
 		</p>
 	</section>
 
@@ -164,7 +164,7 @@ const articles = await fetchMediumArticles(4);
 	{articles.length > 0 && (
 		<section class="mt-16" id="articles">
 			<h2 class="title mb-6 text-xl">
-				<a href="/portfolio/articles/" class="text-accent">Technical Writing</a>
+				<a href="/articles/" class="text-accent">Technical Writing</a>
 			</h2>
 			<ul class="space-y-4" role="list">
 				{articles.map((article) => (
@@ -193,7 +193,7 @@ const articles = await fetchMediumArticles(4);
 				))}
 			</ul>
 			<p class="mt-4">
-				<a href="/portfolio/articles/" class="cactus-link text-sm font-semibold">View all articles →</a>
+				<a href="/articles/" class="cactus-link text-sm font-semibold">View all articles →</a>
 			</p>
 		</section>
 	)}
