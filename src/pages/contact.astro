@@ -1,0 +1,50 @@
+---
+import { personal } from "@/data/portfolio";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	title: "Contact",
+	description: "Get in touch with Fares Elsadek — Backend Software Engineer based in Cairo, Egypt.",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-4 text-2xl">Contact</h1>
+	<p class="mb-8">
+		I'm open to backend engineering opportunities and technical collaboration.
+		Feel free to reach out through any of the channels below.
+	</p>
+
+	<div class="space-y-4">
+		<div class="flex items-start gap-3">
+			<span class="text-accent-2 w-20 shrink-0 font-semibold">Email</span>
+			<a href={`mailto:${personal.email}`} class="cactus-link break-all">{personal.email}</a>
+		</div>
+		<div class="flex items-start gap-3">
+			<span class="text-accent-2 w-20 shrink-0 font-semibold">LinkedIn</span>
+			<a href={personal.linkedin} target="_blank" rel="noreferrer" class="cactus-link break-all">
+				{personal.linkedin.replace("https://", "")}
+			</a>
+		</div>
+		<div class="flex items-start gap-3">
+			<span class="text-accent-2 w-20 shrink-0 font-semibold">GitHub</span>
+			<a href={personal.github} target="_blank" rel="noreferrer" class="cactus-link break-all">
+				{personal.github.replace("https://", "")}
+			</a>
+		</div>
+		<div class="flex items-start gap-3">
+			<span class="text-accent-2 w-20 shrink-0 font-semibold">Phone</span>
+			<a href={`tel:${personal.phone}`} class="cactus-link">{personal.phone}</a>
+		</div>
+		<div class="flex items-start gap-3">
+			<span class="text-accent-2 w-20 shrink-0 font-semibold">Medium</span>
+			<a href={personal.medium} target="_blank" rel="noreferrer" class="cactus-link break-all">
+				{personal.medium.replace("https://", "")}
+			</a>
+		</div>
+	</div>
+
+	<p class="text-muted mt-8 text-sm">
+		Based in {personal.location}.
+	</p>
+</PageLayout>

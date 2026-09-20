@@ -1,36 +1,43 @@
 ---
+import { personal, skills } from "@/data/portfolio";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
 	title: "About",
+	description:
+		"Backend Software Engineer focused on .NET, C#, distributed systems, APIs, and cloud-native architecture.",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
+	<h1 class="title mb-8 text-2xl">About</h1>
 	<div class="prose prose-sm prose-cactus max-w-none">
 		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
+			I'm a Backend Software Engineer based in Cairo, Egypt, working primarily with .NET and C#.
+			I build scalable APIs, distributed systems, and cloud-native applications, with a focus on
+			clean architecture, reliability, and observability.
 		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
 		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
+			At Health Insights Group, I contribute to a healthcare platform built on .NET Core — working on
+			backend modules, redesigning real-time notification systems with SignalR and Redis, and
+			collaborating with clinical and product teams to deliver production-ready features.
+		</p>
+		<p>
+			Before that, I worked as an intern at EJADA Systems building CRM features with C# and .NET Framework,
+			and as a web security researcher on HackerOne, where I disclosed vulnerabilities for organizations
+			including the U.S. Department of Defense and AT&T. That security background directly informs
+			how I approach API design, authentication, and system architecture.
+		</p>
+		<p>
+			I enjoy working on problems involving scalability, performance, distributed communication,
+			authentication and authorization, observability, and system reliability. Beyond .NET, I've
+			built systems in Go and Java/Spring Boot to broaden my perspective on backend engineering patterns.
+		</p>
+		<p>
+			I'm always interested in connecting with engineers working on challenging backend systems.
+			Feel free to reach out via
+			<a href={`mailto:${personal.email}`} class="cactus-link">{personal.email}</a> or
+			<a href={personal.linkedin} target="_blank" rel="noreferrer" class="cactus-link">LinkedIn</a>.
 		</p>
 	</div>
 </PageLayout>

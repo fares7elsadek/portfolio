@@ -1,84 +1,260 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import PostPreview from "@/components/blog/PostPreview.astro";
-import Note from "@/components/note/Note.astro";
 import SocialList from "@/components/SocialList.astro";
-import { getAllPosts } from "@/data/post";
+import {
+	personal,
+	experience,
+	featuredProjects,
+	otherProjects,
+	skills,
+	education,
+	certifications,
+	volunteering,
+} from "@/data/portfolio";
+import { fetchMediumArticles } from "@/data/medium";
 import PageLayout from "@/layouts/Base.astro";
-import { collectionDateSort } from "@/utils/date";
 
-// Posts
-const MAX_POSTS = 10;
-const allPosts = await getAllPosts();
-const allPostsByDate = allPosts.sort(collectionDateSort) as CollectionEntry<"post">[];
-const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
-
-// Pinned Posts, set to a max of 3;
-const MAX_PINNED_POSTS = 3;
-const pinnedPosts = allPostsByDate
-	.values()
-	.filter((p) => p.data.pinned)
-	.take(MAX_PINNED_POSTS)
-	.toArray();
-
-// Notes, set to a max of 5
-const MAX_NOTES = 5;
-const allNotes = await getCollection("note");
-const latestNotes = allNotes
-	.sort(collectionDateSort)
-	.slice(0, MAX_NOTES) as CollectionEntry<"note">[];
+const articles = await fetchMediumArticles(4);
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-12">Hello World!</h1>
-		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
-		</p>
+<PageLayout meta={{ title: "Backend Software Engineer" }}>
+	{/* ── Hero ────────────────────────────────────── */}
+	<section id="hero">
+		<h1 class="title mb-2 text-3xl">{personal.name}</h1>
+		<p class="text-accent mb-3 text-lg font-semibold">{personal.title}</p>
+		<p class="text-muted mb-1 text-sm">{personal.location}</p>
+		<p class="mb-6 mt-4 max-w-xl">{personal.summary}</p>
 		<SocialList />
+		<div class="mt-6 flex flex-wrap gap-3">
+			<a href="/portfolio/projects/" class="cactus-link font-semibold">View Projects →</a>
+			<a href={personal.github} target="_blank" rel="noreferrer" class="cactus-link font-semibold">GitHub</a>
+			<a href={personal.linkedin} target="_blank" rel="noreferrer" class="cactus-link font-semibold">LinkedIn</a>
+			<a href="/portfolio/contact/" class="cactus-link font-semibold">Contact</a>
+		</div>
 	</section>
-	{
-		pinnedPosts.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title mb-6 text-xl">Pinned Posts</h2>
-				<ul class="space-y-4" role="list">
-					{pinnedPosts.map((p) => (
-						<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-							<PostPreview post={p} />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
-	<section class="mt-16">
-		<h2 class="title text-accent mb-6 text-xl"><a href="/posts/">Posts</a></h2>
-		<ul class="space-y-4" role="list">
-			{
-				latestPosts.map((p) => (
+
+	{/* ── About / Engineering Focus ──────────────── */}
+	<section class="mt-16" id="about">
+		<h2 class="title mb-4 text-xl">Engineering Focus</h2>
+		<div class="space-y-3">
+			<p>
+				I build backend systems with .NET and C#, focusing on clean API design, distributed communication,
+				and production-grade reliability. My work spans real-time systems, event-driven architectures,
+				and cloud-native deployments.
+			</p>
+			<p>
+				I care about the details that keep systems running well: observability with OpenTelemetry and
+				Grafana, cache invalidation strategies, cursor-based pagination, and authentication flows with
+				OAuth2 and JWT. I also bring a security-first perspective from hands-on vulnerability research.
+			</p>
+		</div>
+	</section>
+
+	{/* ── Experience ─────────────────────────────── */}
+	<section class="mt-16" id="experience">
+		<h2 class="title mb-6 text-xl">Experience</h2>
+		<div class="space-y-8">
+			{experience.map((job) => (
+				<div>
+					<div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
+						<h3 class="text-accent-2 font-semibold">
+							{job.title} — {job.company}
+						</h3>
+						<span class="text-muted text-sm">{job.dates}</span>
+					</div>
+					<p class="text-muted mb-2 text-sm">{job.location}</p>
+					<ul class="list-inside list-disc space-y-1 text-sm" role="list">
+						{job.points.map((point) => (
+							<li>{point}</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+	</section>
+
+	{/* ── Featured Projects ──────────────────────── */}
+	<section class="mt-16" id="projects">
+		<h2 class="title mb-6 text-xl">
+			<a href="/portfolio/projects/" class="text-accent">Featured Projects</a>
+		</h2>
+		<div class="space-y-8">
+			{featuredProjects.map((project) => (
+				<div class="rounded-md border border-current/10 p-4">
+					<div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
+						<h3 class="text-accent-2 text-lg font-semibold">{project.name}</h3>
+						<a
+							href={project.github}
+							target="_blank"
+							rel="noreferrer"
+							class="cactus-link text-sm"
+						>
+							GitHub →
+						</a>
+					</div>
+					<p class="mt-1 mb-3 text-sm">{project.description}</p>
+					<div class="mb-3 flex flex-wrap gap-1.5">
+						{project.tech.map((t) => (
+							<span class="bg-global-text/8 text-muted rounded px-2 py-0.5 text-xs font-medium">
+								{t}
+							</span>
+						))}
+					</div>
+					<ul class="list-inside list-disc space-y-1 text-sm" role="list">
+						{project.highlights.slice(0, 4).map((h) => (
+							<li>{h}</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+		<p class="mt-4">
+			<a href="/portfolio/projects/" class="cactus-link text-sm font-semibold">View all projects →</a>
+		</p>
+	</section>
+
+	{/* ── Other Projects ─────────────────────────── */}
+	<section class="mt-16" id="other-projects">
+		<h2 class="title mb-4 text-xl">Other Projects</h2>
+		<div class="space-y-4">
+			{otherProjects.map((project) => (
+				<div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+					<div>
+						<a
+							href={project.github}
+							target="_blank"
+							rel="noreferrer"
+							class="cactus-link font-semibold"
+						>
+							{project.name}
+						</a>
+						<span class="text-muted text-sm"> — {project.description}</span>
+					</div>
+					<div class="flex flex-wrap gap-1">
+						{project.tech.slice(0, 4).map((t) => (
+							<span class="bg-global-text/8 text-muted rounded px-1.5 py-0.5 text-xs">
+								{t}
+							</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	{/* ── Skills ──────────────────────────────────── */}
+	<section class="mt-16" id="skills">
+		<h2 class="title mb-6 text-xl">Technical Skills</h2>
+		<div class="grid gap-6 sm:grid-cols-2">
+			{skills.map((category) => (
+				<div>
+					<h3 class="text-accent-2 mb-2 font-semibold">{category.name}</h3>
+					<div class="flex flex-wrap gap-1.5">
+						{category.items.map((item) => (
+							<span class="bg-global-text/8 text-muted rounded px-2 py-0.5 text-xs font-medium">
+								{item}
+							</span>
+						))}
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	{/* ── Articles ────────────────────────────────── */}
+	{articles.length > 0 && (
+		<section class="mt-16" id="articles">
+			<h2 class="title mb-6 text-xl">
+				<a href="/portfolio/articles/" class="text-accent">Technical Writing</a>
+			</h2>
+			<ul class="space-y-4" role="list">
+				{articles.map((article) => (
 					<li class="grid gap-1 sm:grid-cols-[auto_1fr]">
-						<PostPreview post={p} />
+						<span class="text-muted min-w-30 text-sm font-semibold">
+							{new Date(article.pubDate).toLocaleDateString("en", {
+								day: "numeric",
+								month: "short",
+								year: "numeric",
+							})}
+						</span>
+						<div>
+							<a
+								href={article.link}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link"
+							>
+								{article.title}
+							</a>
+							{article.excerpt && (
+								<p class="text-muted mt-1 text-sm line-clamp-2">{article.excerpt}</p>
+							)}
+						</div>
 					</li>
-				))
-			}
+				))}
+			</ul>
+			<p class="mt-4">
+				<a href="/portfolio/articles/" class="cactus-link text-sm font-semibold">View all articles →</a>
+			</p>
+		</section>
+	)}
+
+	{/* ── Education & Certifications ─────────────── */}
+	<section class="mt-16" id="education">
+		<h2 class="title mb-4 text-xl">Education & Certifications</h2>
+		<div class="mb-4">
+			<h3 class="text-accent-2 font-semibold">{education.degree}</h3>
+			<p class="text-muted text-sm">{education.university}, {education.location}</p>
+			<p class="text-muted text-sm">{education.dates}</p>
+		</div>
+		<div>
+			<h3 class="text-accent-2 mb-2 font-semibold">Certifications</h3>
+			<ul class="list-inside list-disc space-y-1 text-sm" role="list">
+				{certifications.map((cert) => (
+					<li>
+						{cert.name} <span class="text-muted">— {cert.issuer}</span>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	{/* ── Volunteering ───────────────────────────── */}
+	<section class="mt-16" id="volunteering">
+		<h2 class="title mb-4 text-xl">Volunteering</h2>
+		<ul class="space-y-2 text-sm" role="list">
+			{volunteering.map((v) => (
+				<li>
+					<span class="font-semibold">{v.role}</span>
+					<span class="text-muted"> — {v.org}</span>
+				</li>
+			))}
 		</ul>
 	</section>
-	{
-		latestNotes.length > 0 && (
-			<section class="mt-16">
-				<h2 class="title text-accent mb-6 text-xl">
-					<a href="/notes/">Notes</a>
-				</h2>
-				<ul class="space-y-6" role="list">
-					{latestNotes.map((note) => (
-						<li>
-							<Note note={note} as="h3" isPreview />
-						</li>
-					))}
-				</ul>
-			</section>
-		)
-	}
+
+	{/* ── Contact ─────────────────────────────────── */}
+	<section class="mt-16" id="contact">
+		<h2 class="title mb-4 text-xl">Contact</h2>
+		<ul class="space-y-2 text-sm" role="list">
+			<li>
+				<span class="text-muted font-semibold">Email:</span>
+				<a href={`mailto:${personal.email}`} class="cactus-link">{personal.email}</a>
+			</li>
+			<li>
+				<span class="text-muted font-semibold">LinkedIn:</span>
+				<a href={personal.linkedin} target="_blank" rel="noreferrer" class="cactus-link">
+					{personal.linkedin.replace("https://", "")}
+				</a>
+			</li>
+			<li>
+				<span class="text-muted font-semibold">GitHub:</span>
+				<a href={personal.github} target="_blank" rel="noreferrer" class="cactus-link">
+					{personal.github.replace("https://", "")}
+				</a>
+			</li>
+			<li>
+				<span class="text-muted font-semibold">Phone:</span>
+				<a href={`tel:${personal.phone}`} class="cactus-link">{personal.phone}</a>
+			</li>
+		</ul>
+	</section>
 </PageLayout>

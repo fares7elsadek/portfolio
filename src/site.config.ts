@@ -2,26 +2,14 @@ import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://astro-cactus.chriswilliams.dev/",
-	/*
-		- Used to construct the meta title property found in src/components/BaseHead.astro L:11
-		- The webmanifest name found in astro.config.ts L:42
-		- The link value found in src/components/layout/Header.astro L:35
-		- In the footer found in src/components/layout/Footer.astro L:12
-	*/
-	title: "Astro Cactus",
-	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
-	author: "Chris Williams",
-	// Used as the default description meta property and webmanifest description
-	description: "An opinionated starter theme for Astro",
-	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
-	lang: "en-GB",
-	// Meta property, found in src/components/BaseHead.astro L:42
-  ogLocale: "en_GB",
-  // Determines whether to show the logo in the templates header
-	showLogo: true,
-	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
+	url: "https://fares7elsadek.github.io",
+	title: "Fares Elsadek",
+	author: "Fares Elsadek",
+	description:
+		"Backend Software Engineer specializing in .NET, C#, distributed systems, APIs, cloud infrastructure, and scalable backend architecture.",
+	lang: "en",
+	ogLocale: "en_US",
+	showLogo: false,
 	date: {
 		options: {
 			day: "numeric",
@@ -34,20 +22,20 @@ export const siteConfig: SiteConfig = {
 // Used to generate links in both the Header & Footer.
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: "/",
+		path: "/portfolio/",
 		title: "Home",
 	},
 	{
-		path: "/about/",
-		title: "About",
+		path: "/portfolio/projects/",
+		title: "Projects",
 	},
 	{
-		path: "/posts/",
-		title: "Blog",
+		path: "/portfolio/articles/",
+		title: "Articles",
 	},
 	{
-		path: "/notes/",
-		title: "Notes",
+		path: "/portfolio/contact/",
+		title: "Contact",
 	},
 ];
 

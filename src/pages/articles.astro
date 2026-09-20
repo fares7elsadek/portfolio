@@ -1,0 +1,73 @@
+---
+import { fetchMediumArticles } from "@/data/medium";
+import { personal } from "@/data/portfolio";
+import PageLayout from "@/layouts/Base.astro";
+
+const articles = await fetchMediumArticles(20);
+
+const meta = {
+	title: "Articles",
+	description:
+		"Technical articles on backend engineering, .NET, distributed systems, and software architecture by Fares Elsadek.",
+};
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-4 text-2xl">Technical Writing</h1>
+	<p class="text-muted mb-8 text-sm">
+		Published on <a href={personal.medium} target="_blank" rel="noreferrer" class="cactus-link">Medium</a>.
+	</p>
+
+	{articles.length > 0 ? (
+		<ul class="space-y-6" role="list">
+			{articles.map((article) => (
+				<li class="rounded-md border border-current/10 p-4">
+					<div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-4">
+						{article.thumbnail && (
+							<img
+								src={article.thumbnail}
+								alt={article.title}
+								class="h-24 w-full rounded object-cover sm:w-36 sm:min-w-36"
+								loading="lazy"
+							/>
+						)}
+						<div class="flex-1">
+							<a
+								href={article.link}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link text-accent-2 font-semibold"
+							>
+								{article.title}
+							</a>
+							<p class="text-muted mt-1 text-sm">
+								{new Date(article.pubDate).toLocaleDateString("en", {
+									day: "numeric",
+									month: "short",
+									year: "numeric",
+								})}
+							</p>
+							{article.excerpt && (
+								<p class="mt-2 text-sm line-clamp-3">{article.excerpt}</p>
+							)}
+							<a
+								href={article.link}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link mt-2 inline-block text-sm"
+							>
+								Read on Medium →
+							</a>
+						</div>
+					</div>
+				</li>
+			))}
+		</ul>
+	) : (
+		<p class="text-muted">
+			Articles are loaded from Medium at build time. Visit my
+			<a href={personal.medium} target="_blank" rel="noreferrer" class="cactus-link">Medium profile</a>
+			to read my latest writing.
+		</p>
+	)}
+</PageLayout>
