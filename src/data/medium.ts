@@ -27,7 +27,7 @@ function extractExcerpt(html: string, maxLength = 160): string {
 
 function extractThumbnail(html: string): string | null {
 	const match = html.match(/<img[^>]+src="([^"]+)"/);
-	return match ? match[1] : null;
+	return match && match[1] ? match[1] : null;
 }
 
 function parseItem(itemXml: string): MediumArticle | null {
