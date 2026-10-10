@@ -28,6 +28,16 @@ const meta = {
 						>
 							View on GitHub →
 						</a>
+						{project.live && (
+							<a
+								href={project.live}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link text-sm"
+							>
+								Live Demo →
+							</a>
+						)}
 					</div>
 					<p class="mt-2 mb-3">{project.description}</p>
 					<div class="mb-4 flex flex-wrap gap-1.5">
@@ -63,6 +73,16 @@ const meta = {
 						>
 							GitHub →
 						</a>
+						{project.live && (
+							<a
+								href={project.live}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link text-sm"
+							>
+								Live Demo →
+							</a>
+						)}
 					</div>
 					<p class="text-muted mt-1 mb-2 text-sm">{project.description}</p>
 					<div class="mb-3 flex flex-wrap gap-1.5">

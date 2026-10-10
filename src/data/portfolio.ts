@@ -78,6 +78,7 @@ export interface Project {
 	tech: string[];
 	highlights: string[];
 	featured: boolean;
+	live?: string;
 }
 
 export const projects: Project[] = [
@@ -141,6 +142,7 @@ export const projects: Project[] = [
 		description:
 			"A Discord-style collaboration platform with messaging, notifications, video rooms, and real-time presence.",
 		github: "https://github.com/fares7elsadek/SyncSpace-SpringBoot",
+		live: "https://syncspace.fareselsadek.fyi/",
 		tech: [
 			"Spring Boot",
 			"Angular",
@@ -178,6 +180,7 @@ export const projects: Project[] = [
 		name: "ClickMart",
 		description: "A complete e-commerce application with product management, cart, and payments.",
 		github: "https://github.com/fares7elsadek/ClickMart",
+		live: "https://clickmart.runasp.net/",
 		tech: ["ASP.NET MVC", "SQL Server", "Stripe", "Bootstrap"],
 		highlights: [
 			"Added product management, cart, order processing, Stripe payments, and email notifications.",

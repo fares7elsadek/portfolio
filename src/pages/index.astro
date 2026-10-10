@@ -90,6 +90,16 @@ const articles = await fetchMediumArticles(4);
 						>
 							GitHub →
 						</a>
+						{project.live && (
+							<a
+								href={project.live}
+								target="_blank"
+								rel="noreferrer"
+								class="cactus-link text-sm"
+							>
+								Live Demo →
+							</a>
+						)}
 					</div>
 					<p class="mt-1 mb-3 text-sm">{project.description}</p>
 					<div class="mb-3 flex flex-wrap gap-1.5">
@@ -129,6 +139,16 @@ const articles = await fetchMediumArticles(4);
 						</a>
 						<span class="text-muted text-sm"> — {project.description}</span>
 					</div>
+					{project.live && (
+						<a
+							href={project.live}
+							target="_blank"
+							rel="noreferrer"
+							class="cactus-link text-sm"
+						>
+							Live Demo →
+						</a>
+					)}
 					<div class="flex flex-wrap gap-1">
 						{project.tech.slice(0, 4).map((t) => (
 							<span class="bg-global-text/8 text-muted rounded px-1.5 py-0.5 text-xs">
